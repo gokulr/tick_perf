@@ -61,3 +61,12 @@ k){if[~@!L::`$(-10_$L),$x;.[L;();:;()]];i::-11!(-2;L);<L}
 .u.tick
 k){init[];if[~&/(`time`sym~2#!+.:)'t;'`timesym];@[;`sym;`g#]'t;d::_.z.Z;if[l::#y;L::`$":",y,"/",x,10#".";l::ld d]}
 
+
+Steps:
+1. Start tp:
+/home/sb/arbtick/release/q/KDBCore/l64/q tick/tick.k japan /tmp -p 2978 (needs schema/tplog location and port)
+2. Start rdb:
+$RUN -p marketdata '$DNA tick/r.q -tp :2978 -hdb :2271'
+3. Start FH:
+normal q session and do the steps above to pub data to tp/rt
+

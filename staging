@@ -1,4 +1,4 @@
-I did some benchmark on the performance of the KX tickerplant on hkuvleqarb1 yesterday, and the performance are really low compared to numbers on KX.
+I did some benchmark on the performance of the KX tickerplant yesterday, and the performance are really low compared to numbers on KX.
 
 /-- Feedhandler process
 /single depth update
@@ -47,7 +47,7 @@ time         sumPending     countPending
 I test the same with trade, and got an equally low result (it took TP 10s to process 200k messages, and count per second in RDB is around 19k)
 
 
-I noticed that when the updates comes to TP, data is logged down to disk synchronously, and I think this is the main reason for the low performance. It might also explain the performance difference between hkuvleqarb1 and jp1parb01 (35k/s on jp1p compared to 15-18k/s on hkuv)
+I noticed that when the updates comes to TP, data is logged down to disk synchronously, and I think this is the main reason for the low performance. 
 
 /-- tick.k
 .u.upd
@@ -64,9 +64,9 @@ k){init[];if[~&/(`time`sym~2#!+.:)'t;'`timesym];@[;`sym;`g#]'t;d::_.z.Z;if[l::#y
 
 Steps:
 1. Start tp:
-/home/sb/arbtick/release/q/KDBCore/l64/q tick/tick.k japan /tmp -p 2978 (needs schema/tplog location and port)
+$QHOME/l32/q tick/tick.k japan /tmp -p 2978 (needs schema/tplog location and port)
 2. Start rdb:
-$RUN -p marketdata '$DNA tick/r.q -tp :2978 -hdb :2271'
+$QHOME/l32/q tick/r.q -tp :2978 -hdb :2271
 3. Start FH:
 normal q session and do the steps above to pub data to tp/rt
 
